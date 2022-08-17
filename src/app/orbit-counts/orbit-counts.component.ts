@@ -1,3 +1,4 @@
+import { mapToMapExpression } from '@angular/compiler/src/render3/util';
 import { Component, OnInit, Input } from '@angular/core';
 import { Satellite } from '../satellite';
 
@@ -25,6 +26,14 @@ export class OrbitCountsComponent implements OnInit {
 	  }
 	}
 	return count;
+ }
+
+ satelliteTypes(): string[]{
+	 if(!this.satellites){
+		 return [];
+	 }
+
+	 return this.satellites.filter((s, index) => this.satellites.findIndex(s2 => s2.type === s.type) === index).map(s => s.type);
  }
 
 
